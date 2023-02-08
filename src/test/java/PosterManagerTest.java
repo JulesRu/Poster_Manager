@@ -55,7 +55,6 @@ public class PosterManagerTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
-
     @Test
     public void reversedByDefaultLimit() {
 
@@ -71,13 +70,32 @@ public class PosterManagerTest {
         poster.save(poster8);
         poster.save(poster9);
         poster.save(poster10);
-        poster.save(poster11);
-        poster.save(poster12);
-        poster.save(poster13);
-        poster.save(poster14);
-        poster.save(poster15);
 
-        FilmPoster[] expected = {poster15, poster14, poster13, poster12, poster11, poster10, poster9, poster8, poster7, poster6};
+        FilmPoster[] expected = {poster10, poster9, poster8, poster7, poster6, poster5, poster4, poster3, poster2, poster1};
+        FilmPoster[] actual = poster.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+
+    @Test
+    public void reversedByDefaultOverLimit() {
+
+        PosterManager poster = new PosterManager();
+
+        poster.save(poster1);
+        poster.save(poster2);
+        poster.save(poster3);
+        poster.save(poster4);
+        poster.save(poster5);
+        poster.save(poster6);
+        poster.save(poster7);
+        poster.save(poster8);
+        poster.save(poster9);
+        poster.save(poster10);
+        poster.save(poster11);
+
+        FilmPoster[] expected = {poster11, poster10, poster9, poster8, poster7, poster6, poster5, poster4, poster3, poster2};
         FilmPoster[] actual = poster.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
@@ -97,8 +115,9 @@ public class PosterManagerTest {
         poster.save(poster6);
         poster.save(poster7);
         poster.save(poster8);
+        poster.save(poster9);
 
-        FilmPoster[] expected = {poster8, poster7, poster6, poster5, poster4, poster3, poster2, poster1};
+        FilmPoster[] expected = {poster9, poster8, poster7, poster6, poster5, poster4, poster3, poster2, poster1};
         FilmPoster[] actual = poster.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
@@ -115,19 +134,27 @@ public class PosterManagerTest {
         poster.save(poster2);
         poster.save(poster3);
         poster.save(poster4);
-        poster.save(poster5);
-        poster.save(poster6);
-        poster.save(poster7);
-        poster.save(poster8);
-        poster.save(poster9);
-        poster.save(poster10);
-        poster.save(poster11);
-        poster.save(poster12);
-        poster.save(poster13);
-        poster.save(poster14);
-        poster.save(poster15);
 
-        FilmPoster[] expected = {poster15, poster14, poster13, poster12};
+
+        FilmPoster[] expected = {poster4, poster3, poster2, poster1};
+        FilmPoster[] actual = poster.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void reversedOverRandomLimit() {
+
+        PosterManager poster = new PosterManager(4);
+
+        poster.save(poster1);
+        poster.save(poster2);
+        poster.save(poster3);
+        poster.save(poster4);
+        poster.save(poster5);
+
+
+        FilmPoster[] expected = {poster5, poster4, poster3, poster2};
         FilmPoster[] actual = poster.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
